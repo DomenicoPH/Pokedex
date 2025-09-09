@@ -11,7 +11,7 @@ export default function PokemonCards({ pokemons, onSelect }: Props) {
 
     <section
       id='pokemon-cards'  
-      className="w-[60vw] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 border border-blue-500"
+      className="w-[60vw] max-h-[80vh] overflow-scroll grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 border border-blue-500"
     >
       {pokemons.map(pokemon => (
         <div

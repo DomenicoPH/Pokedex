@@ -14,7 +14,10 @@ export default function PokemonDetail({ pokemon }: Props) {
   }
 
   return (
-    <section id="pokemon-detail" className="flex-1 bg-black text-white p-4 rounded-lg">
+    <section 
+        id="pokemon-detail" 
+        className="max-h-[80vh] flex-1 bg-black text-white p-4 rounded-lg"
+    >
       <h2 className="text-2xl font-bold mb-4 capitalize">{pokemon.name}</h2>
       <img
         src={pokemon.sprites.front_default}
