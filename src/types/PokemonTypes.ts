@@ -7,7 +7,7 @@ export type PokemonCardsProps = {
     pokemons: Pokemon[]
 };
 
-export type PokemonDetail = {
+export type PokemonDetailType = {
     id: number;
     name: string;
     sprites: {
