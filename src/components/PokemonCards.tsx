@@ -1,23 +1,33 @@
 import PokemonCard from "./PokemonCard"
-import type { PokemonDetail } from "../types/PokemonTypes"
+import type { PokemonDetailType } from "../types/PokemonTypes"
 
 type Props = {
-  pokemons: PokemonDetail[]
+  pokemons: PokemonDetailType[]
+  onSelect: (pokemon: PokemonDetailType) => void;
 }
 
-export default function PokemonCards({ pokemons }: Props) {
+export default function PokemonCards({ pokemons, onSelect }: Props) {
   return (
-    // <div className="grid grid-cols-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 border border-blue-500">
-    <div className="flex flex-wrap justify-center gap-4 border border-2 border-blue-500">
+
+    <section
+      id='pokemon-cards'  
+      className="w-[60vw] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 border border-blue-500"
+    >
       {pokemons.map(pokemon => (
-        <PokemonCard
+        <div
           key={pokemon.id}
-          id={pokemon.id}
-          name={pokemon.name}
-          image={pokemon.sprites.front_default}
-          type={pokemon.types[0]?.type.name ?? "unknown"}
-        />
+          onClick={ () => onSelect(pokemon) }
+          className="cursor-pointer"
+        >
+          <PokemonCard
+            id={pokemon.id}
+            name={pokemon.name}
+            image={pokemon.sprites.front_default}
+            type={pokemon.types[0]?.type.name ?? "unknown"}
+          />
+        </div>
       ))}
-    </div>
+    </section>
+
   )
 }

@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+
+import Header from "../components/Header";
 import PokemonCards from "../components/PokemonCards";
-import type { PokemonDetail } from "../types/PokemonTypes";
+import PokemonDetail from "../components/PokemonDetail";
+
+import type { PokemonDetailType } from "../types/PokemonTypes";
 
 export default function Home(){
-    const [pokemons, setPokemons] = useState<PokemonDetail[]>([]);
+    const [pokemons, setPokemons] = useState<PokemonDetailType[]>([]);
     const [loading, setLoading] = useState(true);
+    const [selectedPokemon, setSelectedPokemon] = useState<PokemonDetailType | null>(null);
 
     /*
     useEffect(() => {
@@ -40,9 +45,22 @@ export default function Home(){
     },[])
 
     return (
-    <main className="min-h-screen bg-background text-text p-6">
-      <h1 className="text-3xl font-bold mb-4 text-red-500">Pokédex</h1>
-      {loading ? <p>Cargando Pokémon...</p> : <PokemonCards pokemons={pokemons} />}
+    <main className="min-h-screen bg-red-500 p-6">
+      
+      <Header title='Pokédex'/>
+      
+      {loading ? (
+        <p>Cargando Pokémon...</p>
+      ) : (
+        <div className="flex gap-6">
+          {/* Cards con callback */}
+          <PokemonCards pokemons={pokemons} onSelect={setSelectedPokemon} />
+
+          {/* Detalle */}
+          <PokemonDetail pokemon={selectedPokemon} />
+        </div>
+      )}
+
     </main>
   )
 
