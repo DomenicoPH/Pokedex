@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Fonts */
+@font-face {
+    font-family: 'poke';
+    src: url('./assets/fonts/PokemonGb-RAeo.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+  font-family: 'poke', sans-serif;
+}
+
+/* Scroll bars */
+.custom-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scroll::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 4px;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: #3b82f6; /* bg-blue-500 */
+  border-radius: 4px;
+}
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: #2563eb; /* bg-blue-600 */
+  border-radius: 4px;
+}
+/* Firefox */
+.custom-scroll {
+  scrollbar-width: thin;
+  /* scrollbar-color: #3b82f6 transparent; */
+  scrollbar-color: #facc15 transparent;
+
+}
