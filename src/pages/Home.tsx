@@ -20,21 +20,17 @@ export default function Home({
 }:Props){
 
   return (
-    <main className="min-h-screen bg-red-500 p-6 pt-20">
+    <main className="min-h-[96.7vh] bg-red-500 p-6 pt-20">
       
       <Header title='Pokédex'/>
       
-      {loading ? (
-        <p>Cargando Pokémon...</p>
-      ) : (
-        <div className="flex flex-col-reverse md:flex-row gap-6">
-          {/* Cards con callback */}
-          <PokemonCards pokemons={pokemons} onSelect={setSelectedPokemon} />
-      
-          {/* Detalle */}
-          <PokemonDetail pokemon={selectedPokemon} typesData={typesData} />
-        </div>
-      )}
+      <div className="flex flex-col-reverse md:flex-row gap-6">
+        {/* Cards con callback */}
+        <PokemonCards pokemons={pokemons} onSelect={setSelectedPokemon} loading={loading}/>
+    
+        {/* Detalle */}
+        <PokemonDetail pokemon={selectedPokemon} typesData={typesData} />
+      </div>
 
     </main>
   )

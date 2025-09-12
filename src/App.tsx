@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 import Home from './pages/Home'
 import Types from './pages/Types'
 
@@ -83,6 +84,7 @@ function App() {
           } 
         />
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }

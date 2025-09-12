@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { typeColors } from "../utils/typeColors";
+import { typeColorBg } from "../utils/typeColors";
 
 type PokemonType = {
   name: string;
@@ -49,7 +49,7 @@ export default function Types({ onSelectType }: TypesProps) {
           key={t.name}
           onClick={() => handleSelectType(t)}
           className={`px-3 py-1 rounded-full text-white capitalize transition
-            ${typeColors[t.name] ?? "bg-gray-500"}
+            ${typeColorBg[t.name] ?? "bg-gray-500"}
             ${selectedType === t.name ? "ring-4 ring-yellow-300" : ""}
           `}
         >

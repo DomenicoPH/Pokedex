@@ -1,5 +1,5 @@
 import type { PokemonDetailType } from "../types/PokemonTypes"
-import { typeColors } from "../utils/typeColors";
+import { typeColorBg, typeColorText, typeImages } from "../utils/typeColors";
 
 type Props = {
   pokemon: PokemonDetailType | null;
@@ -10,8 +10,8 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
   
   if (!pokemon) {
     return (
-      <section id="pokemon-detail" className="flex-1 bg-black text-white p-4">
-        <p>Selecciona un Pokémon para ver su detalle</p>
+      <section id="pokemon-detail" className="flex items-center justify-center flex-1 text-center px-10 bg-gray-800 text-white p-4 rounded">
+        <p>Selecciona un Pokémon</p>
       </section>
     )
   };
@@ -24,7 +24,7 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
   return (
     <section 
         id="pokemon-detail" 
-        className="max-h-[80vh] flex-1 bg-black text-white p-4 rounded-lg"
+        className="max-h-[80vh] flex-1 bg-gray-800 text-white p-4 rounded-lg"
     >
 
       <header className="flex items-center border-b border-b-red-500">
@@ -36,29 +36,34 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
         <h2 className="text-2xl font-bold capitalize pl-4">{pokemon.name}</h2>
       </header>
 
-      <div className="flex items-center">
-        <img
-          className="w-32 h-32 m-4 md:m-10"
-          src={pokemon.sprites.other?.showdown?.front_default}
-          alt={pokemon.name}
-        />
+      <div className="flex items-center justify-center gap-2 py-10">
+        <div className="flex justify-center w-[50%]">
+          <img
+            className=" m-4"
+            src={pokemon.sprites.other?.showdown?.front_default}
+            alt={pokemon.name}
+          />
+        </div>
 
-        <div className="flex flex-col gap-2 text-sm">
+        <div className="flex flex-col gap-4 text-sm w-[50%]">
           <p><strong>ID:</strong> <span className="text-yellow-400">{pokemon.id}</span></p>
           <p><strong>Peso:</strong> <span className="text-yellow-400">{pokemon.weight}</span></p>
           <p><strong>Altura:</strong> <span className="text-yellow-400">{pokemon.height}</span></p>
           {/* <p><strong>Tipo:</strong> {pokemon.types.map(t => t.type.name).join(", ")}</p> */}
           <div>
-            <p className="pb-2"><strong>Tipos:</strong></p>
-            <div className="flex gap-2">
+            {/* <p className="pb-2"><strong>Tipos:</strong></p> */}
+            <div className="flex flex-col gap-1">
               {detailedTypes.map((type, idx) =>
                 type ? (
-                  <span
-                    key={idx}
-                    className={`px-3 py-1 rounded text-white font-semibold ${typeColors[type.name] || "bg-gray-500"}`}
-                  >
+                  <div key={idx} className={`flex items-center gap-2 text-sm w-[170px] p-2 pl-4 rounded-full ${typeColorBg[type.name]} bg-opacity-20`}>
+                    <img src={typeImages[type.name]} alt={type.name} className="w-5 h-5" />
+                    <span
+                      key={idx}
+                      className={`py-1 rounded font-semibold ${typeColorText[type.name] || "text-gray-500"}`}
+                    >
                     {type.name}
-                  </span>
+                    </span>
+                  </div>
                 ) : null
               )}
             </div>
