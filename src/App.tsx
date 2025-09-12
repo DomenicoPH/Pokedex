@@ -60,6 +60,15 @@ function App() {
     .catch(err => console.error('Error fetching types: ', err));
   },[])
 
+  const handleSearchById = (id: number) => {
+    const pokemon = pokemons.find(p => p.id === id);
+    if(pokemon){
+      setSelectedPokemon(pokemon);
+    } else {
+      alert('Pokemon no encontrado')
+    }
+  }
+
   return (
     <BrowserRouter>
       <Navbar />
@@ -73,6 +82,7 @@ function App() {
               selectedPokemon={selectedPokemon}
               loading={loading}
               typesData={typesData}
+              onSearch={handleSearchById}
             />} 
         />
         <Route 
