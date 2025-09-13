@@ -25,7 +25,7 @@ export default function Home({
     <main className="min-h-[96.7vh] bg-red-500 p-6 pt-20">
       
       <Header 
-        title='Pokédex'
+        title='Pokedex'
         onSearch={onSearch}
       />
       
