@@ -7,7 +7,27 @@ export type PokemonCardsProps = {
     pokemons: Pokemon[]
 };
 
+export type PokemonAbility = {
+  ability: {
+    name: string;
+    url: string;
+  };
+  is_hidden: boolean;
+  slot: number;
+};
+
+export type PokemonStat = {
+  base_stat: number;
+  effort: number;
+  stat: {
+    name: string;
+    url: string;
+  };
+};
+
 export type PokemonDetailType = {
+    stats: PokemonStat[];
+    abilities: PokemonAbility[];
     id: number;
     name: string;
     weight: string;
