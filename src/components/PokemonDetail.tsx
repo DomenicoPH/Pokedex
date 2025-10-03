@@ -1,12 +1,15 @@
-import type { PokemonDetailType } from "../types/PokemonTypes"
+import { useState } from "react";
+import type { PokemonDetailType } from "../types/PokemonTypes";
 import { typeColorBg, typeColorText, typeImages } from "../utils/typeColors";
 
 type Props = {
   pokemon: PokemonDetailType | null;
   typesData: any[];
-}
+};
 
 export default function PokemonDetail({ pokemon, typesData }: Props) {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   if (!pokemon) {
     return (
       <section
@@ -18,8 +21,8 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
     );
   }
 
-  const detailedTypes = pokemon.types.map(t =>
-    typesData.find(td => td.name === t.type.name)
+  const detailedTypes = pokemon.types.map((t) =>
+    typesData.find((td) => td.name === t.type.name)
   );
 
   return (
@@ -81,7 +84,9 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
                         className="w-4 h-4"
                       />
                       <span
-                        className={`font-semibold ${typeColorText[type.name] || "text-gray-200"}`}
+                        className={`font-semibold ${
+                          typeColorText[type.name] || "text-gray-200"
+                        }`}
                       >
                         {type.name}
                       </span>
@@ -139,14 +144,40 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
               src && (
                 <img
                   key={idx}
-                  className="w-28 h-28 border border-red-500/40 p-3 rounded-lg bg-gray-800 hover:scale-105 transition-transform duration-200"
+                  className="w-28 h-28 border border-red-500/40 p-3 rounded-lg bg-gray-800 hover:scale-105 transition-transform duration-200 cursor-pointer"
                   src={src}
                   alt={pokemon.name}
+                  onClick={() => setSelectedImage(src)} // 👈 al hacer click abrimos modal
                 />
               )
           )}
         </div>
       </div>
+
+      {/* Modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div
+            className="relative bg-gray-900 p-4 rounded-lg shadow-xl"
+            onClick={(e) => e.stopPropagation()} // evitar cerrar si clickea dentro
+          >
+            <button
+              className="absolute top-2 right-2 text-white hover:text-red-400"
+              onClick={() => setSelectedImage(null)}
+            >
+              ✕
+            </button>
+            <img
+              src={selectedImage}
+              alt="Pokemon grande"
+              className="max-w-[80vw] max-h-[80vh] rounded-lg"
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }
