@@ -3,9 +3,10 @@ import { pokemonTypes } from "../utils/typeColors";
 
 interface PokemonTypesBarProps {
   onHover?: (type: string | null) => void;
+  onSelectType?: (type: string | null) => void;
 }
 
-export default function PokemonTypesBar({ onHover }: PokemonTypesBarProps) {
+export default function PokemonTypesBar({ onHover, onSelectType }: PokemonTypesBarProps) {
   const [hoveredType, setHoveredType] = useState<string | null>(null);
 
   const handleMouseEnter = (type: string) => {
@@ -18,6 +19,10 @@ export default function PokemonTypesBar({ onHover }: PokemonTypesBarProps) {
     onHover?.(null);
   };
 
+  const handleClick = (type: string) => {
+    onSelectType?.(type);
+  }
+
   return (
     <>
       <div className="flex overflow-x-auto gap-4 w-auto h-8 py-2 bg-gray-800 rounded-l-3xl p-6">
@@ -27,6 +32,7 @@ export default function PokemonTypesBar({ onHover }: PokemonTypesBarProps) {
             className="flex flex-col items-center flex-shrink-0"
             onMouseEnter={() => handleMouseEnter(type.name)}
             onMouseLeave={handleMouseLeave}
+            onClick={() => handleClick(type.name)}
           >
             <img
               src={type.img}

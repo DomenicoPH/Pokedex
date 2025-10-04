@@ -3,10 +3,11 @@ import PokemonTypesBar from "./PokemonTypesBar";
 
 interface HeaderProps {
     title: string;
-    onSearch: (id: number) => void
+    onSearch: (id: number) => void;
+    onSelectType: (type: string | null) => void;
 }
 
-export default function Header({title, onSearch}:HeaderProps){
+export default function Header({title, onSearch, onSelectType}:HeaderProps){
 
     const [searchId, setSearchId] = useState<string>("");
     
@@ -15,7 +16,7 @@ export default function Header({title, onSearch}:HeaderProps){
         if(!isNaN(id)){
             onSearch(id);
         } else {
-            alert('Ingresa un ID válido')
+            alert('Ingresa un ID válido') //Crear un componente reutilizable para esto (!)
         }
         setSearchId('');
     };
@@ -44,7 +45,7 @@ export default function Header({title, onSearch}:HeaderProps){
                 </button>
             </div>
             <span className="px-2"></span>
-            <PokemonTypesBar />
+            <PokemonTypesBar onSelectType={onSelectType} />
         </header>
     );
 }
