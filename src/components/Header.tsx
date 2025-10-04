@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { typeImages, pokemonTypes } from "../utils/typeColors";
+import PokemonTypesBar from "./PokemonTypesBar";
 
 interface HeaderProps {
     title: string;
@@ -9,7 +9,6 @@ interface HeaderProps {
 export default function Header({title, onSearch}:HeaderProps){
 
     const [searchId, setSearchId] = useState<string>("");
-    const [hoveredType, setHoveredType] = useState<string | null>(null);
     
     const handleSearch = () => {
         const id = parseInt(searchId);
@@ -45,26 +44,7 @@ export default function Header({title, onSearch}:HeaderProps){
                 </button>
             </div>
             <span className="px-2"></span>
-            <div className="flex overflow-x-auto gap-4 w-auto h-8 py-2 bg-gray-800 rounded-l-3xl p-6">
-                {pokemonTypes.map((type) => (
-                    <div
-                        key={type.name}
-                        className="flex flex-col items-center flex-shrink-0"
-                        onMouseEnter={() => setHoveredType(type.name)}
-                        onMouseLeave={() => setHoveredType(null)}
-                    >
-                        <img
-                            src={type.img}
-                            alt={type.name}
-                            className="w-4 h-4 hover:scale-110 cursor-pointer"
-                        />
-                        {/* <span className="text-[8px] text-white capitalize">{type.name}</span> */}
-                    </div>
-                ))}
-            </div>
-            <div className="flex items-center justify-center w-40 h-8 text-[10px] bg-gray-800 rounded-r-3xl p-2 text-yellow-400">
-                {hoveredType ? hoveredType.charAt(0).toUpperCase() + hoveredType.slice(1) : "tipo"}
-            </div>
+            <PokemonTypesBar />
         </header>
     );
 }
