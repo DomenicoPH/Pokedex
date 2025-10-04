@@ -1,6 +1,6 @@
-export default function Navbar(){
+import pokeicon from '../assets/img/pokeicon.png'
 
-    const pokeicon = '/src/assets/img/pokeicon.png'
+export default function Navbar(){
     return(
         <nav className="flex justify-center items-center h-10 bg-yellow-400 fixed w-screen z-10">
             <div className="flex justify-between w-[80vw]">
