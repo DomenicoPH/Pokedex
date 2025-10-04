@@ -31,40 +31,43 @@ export default function PokemonTypesBar({ onHover, onSelectType }: PokemonTypesB
 
   return (
     <>
-        {/* Tipos */}
-        <div className="flex overflow-x-auto gap-4 w-auto h-8 py-2 bg-gray-800 rounded-md p-6">
-          {pokemonTypes.map((type) => (
-            <div
-              key={type.name}
-              className="flex flex-col items-center flex-shrink-0"
-              onMouseEnter={() => handleMouseEnter(type.name)}
-              onMouseLeave={handleMouseLeave}
-              onClick={() => handleClick(type.name)}
-            >
-              <img
-                src={type.img}
-                alt={type.name}
-                className="w-4 h-4 hover:scale-110 cursor-pointer"
-              />
+        <div className="flex gap-1">
+            {/* Tipos */}
+            <div className="flex overflow-x-auto gap-2 w-auto h-6 py-1 rounded-md p-2">
+              {pokemonTypes.map((type) => (
+                <div
+                  key={type.name}
+                  className="flex flex-col items-center flex-shrink-0"
+                  onMouseEnter={() => handleMouseEnter(type.name)}
+                  onMouseLeave={handleMouseLeave}
+                  onClick={() => handleClick(type.name)}
+                >
+                  <img
+                    src={type.img}
+                    alt={type.name}
+                    className="w-4 h-4 cursor-pointer filter grayscale hover:grayscale-0 hover:scale-110 transition hover:bg-gray-900 rounded-sm p-[1px]"
+                  />
+                </div>
+              ))}
             </div>
-          ))}
+
+            {/* Nombre de Tipo */}
+            <div className="flex items-center justify-center w-24 h-6 text-[10px] rounded-md px-5 text-yellow-400">
+              {hoveredType
+                ? hoveredType.charAt(0).toUpperCase() + hoveredType.slice(1)
+                : "tipo"}
+            </div>
+
+            {/* Botón Reset */}
+            <button
+              onClick={handleReset}
+              className="flex items-center justify-center w-6 h-6 bg-gray-800 hover:bg-gray-600 transition-colors cursor-pointer rounded-full p-[6px]"
+              title="Reset filtros"
+            >
+              <FiRefreshCcw className="text-yellow-400" size={16} />
+            </button>
+
         </div>
-
-      {/* Botón Reset */}
-      <button
-        onClick={handleReset}
-        className="flex items-center justify-center w-8 h-8 bg-gray-800 hover:bg-gray-600 transition-colors cursor-pointer rounded-md"
-        title="Reset filtros"
-      >
-        <FiRefreshCcw className="text-yellow-400" size={16} />
-      </button>
-
-      {/* Nombre de Tipo */}
-      <div className="flex items-center justify-center w-40 h-8 text-[10px] bg-gray-800 rounded-md p-2 text-yellow-400">
-        {hoveredType
-          ? hoveredType.charAt(0).toUpperCase() + hoveredType.slice(1)
-          : "tipo"}
-      </div>
     </>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PokemonTypesBar from "./PokemonTypesBar";
+import { FiSearch } from "react-icons/fi";
 
 interface HeaderProps {
     title: string;
@@ -27,7 +28,7 @@ export default function Header({title, onSearch, onSelectType}:HeaderProps){
 
      return (
         <header className="flex items-center mb-4 gap-[2px]">
-            <h1 className="text-xl mr-4 font-bold text-yellow-400 text-center uppercase">{title}</h1>
+            <h1 className="text-md mr-4 font-bold text-yellow-400 text-center uppercase">{title}</h1>
             <div className="flex gap-2">
                 <input
                     type="number"
@@ -35,13 +36,13 @@ export default function Header({title, onSearch, onSelectType}:HeaderProps){
                     value={searchId}
                     onChange={(e) => setSearchId(e.target.value)}
                     onKeyDown={handleKeyPress}
-                    className="text-xs px-2 w-40 py-1 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                    className="text-[7px] px-2 w-40 py-1 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 />
                 <button
                     onClick={handleSearch}
-                    className="bg-yellow-400 text-black text-xs px-4 py-1 rounded hover:bg-yellow-300"
+                    className="bg-yellow-400 text-black text-xs px-2 rounded hover:bg-yellow-300"
                 >
-                    Buscar
+                    <FiSearch />
                 </button>
             </div>
             <span className="px-2"></span>
