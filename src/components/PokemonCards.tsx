@@ -16,7 +16,6 @@ export default function PokemonCards({
   onSelect, 
   loading, 
   selectedPokemon,
-  currentGeneration
 }: Props) {
 
   const containerRef = useRef<HTMLDivElement>(null);

@@ -6,7 +6,7 @@ type Props = {
   isSelected?: boolean;
 }
 
-export default function PokemonCard({ id, name, image, type, isSelected = false }: Props) {
+export default function PokemonCard({ id, name, image, /*type,*/ isSelected = false }: Props) {
   return (
     <div
       id='pokemon-card' 
