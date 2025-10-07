@@ -16,7 +16,7 @@ export default function Types({ onSelectType }: TypesProps) {
   const [selectedType, setSelectedType] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  // 🔹 Traer todos los tipos
+  // Traer todos los tipos
   useEffect(() => {
     axios
       .get("https://pokeapi.co/api/v2/type")
@@ -26,7 +26,7 @@ export default function Types({ onSelectType }: TypesProps) {
       .catch((err) => console.error("Error fetching types:", err));
   }, []);
 
-  // 🔹 Manejar selección de tipo
+  // Manejar selección de tipo
   const handleSelectType = async (type: PokemonType) => {
     setSelectedType(type.name);
     setLoading(true);
@@ -43,19 +43,22 @@ export default function Types({ onSelectType }: TypesProps) {
   };
 
   return (
-    <section className="flex flex-wrap gap-2 p-4 pt-20 bg-red-500">
-      {types.map((t) => (
-        <button
-          key={t.name}
-          onClick={() => handleSelectType(t)}
-          className={`px-3 py-1 rounded-full text-white capitalize transition
-            ${typeColorBg[t.name] ?? "bg-gray-500"}
-            ${selectedType === t.name ? "ring-4 ring-yellow-300" : ""}
-          `}
-        >
-          {t.name}
-        </button>
-      ))}
+    <section className="min-h-[96.6dvh] flex flex-wrap gap-2 p-4 pt-20 bg-red-500">
+      
+      <div>
+        {types.map((t) => (
+          <button
+            key={t.name}
+            onClick={() => handleSelectType(t)}
+            className={`px-3 py-1 rounded-full text-white capitalize transition
+              ${typeColorBg[t.name] ?? "bg-gray-500"}
+              ${selectedType === t.name ? "ring-4 ring-yellow-300" : ""}
+            `}
+          >
+            {t.name}
+          </button>
+        ))}
+      </div>
 
       {loading && <p className="w-full text-center mt-4">Cargando Pokémon...</p>}
     </section>
