@@ -2,7 +2,7 @@ import { useState } from "react";
 import Header from "../components/Header";
 import PokemonCards from "../components/PokemonCards";
 import PokemonDetail from "../components/PokemonDetail";
-import type { PokemonDetailType } from "../types/PokemonTypes";
+import type { Generation, PokemonDetailType } from "../types/PokemonTypes";
 
 type Props = {
   pokemons: PokemonDetailType[]
@@ -10,7 +10,11 @@ type Props = {
   loading: boolean;
   selectedPokemon: PokemonDetailType | null;
   typesData: any[];
-  onSearch: (id: number) => void
+  onSearch: (id: number) => void;
+  currentGeneration: Generation;
+  onLoadNext: () => void;
+  onSelectGeneration: (genId: number) => void;
+  hasMore: boolean;
 }
 
 export default function Home({
@@ -19,7 +23,11 @@ export default function Home({
   loading,
   selectedPokemon,
   typesData,
-  onSearch
+  onSearch,
+  currentGeneration,
+  onLoadNext,
+  onSelectGeneration,
+  hasMore,
 }:Props){
 
   const [ selectedType, setSelectedType ] = useState<string | null>(null);
@@ -35,6 +43,10 @@ export default function Home({
         title='Pokedex'
         onSearch={onSearch}
         onSelectType={setSelectedType}
+        currentGeneration={currentGeneration}
+        onLoadNext={onLoadNext}
+        onSelectGeneration={onSelectGeneration}
+        hasMore={hasMore}
       />
       
       <div className="flex flex-col-reverse md:flex-row gap-6">
@@ -45,6 +57,7 @@ export default function Home({
           onSelect={setSelectedPokemon} 
           loading={loading} 
           selectedPokemon={selectedPokemon}
+          currentGeneration={currentGeneration}
         />
     
         {/* Detalle */}

@@ -1,3 +1,10 @@
+export interface Generation {
+    id: number;
+    name: string;
+    limit: number;
+    offset: number;
+}
+
 export type Pokemon = {
     name: string;
     url: string;

@@ -1,16 +1,23 @@
 import { useEffect, useRef } from "react"
 import PokemonCard from "./PokemonCard"
 import Cargando from "../ui/Cargando"
-import type { PokemonDetailType } from "../types/PokemonTypes"
+import type { PokemonDetailType, Generation } from "../types/PokemonTypes"
 
 type Props = {
   pokemons: PokemonDetailType[]
   loading: boolean
   onSelect: (pokemon: PokemonDetailType) => void;
   selectedPokemon: PokemonDetailType | null;
+  currentGeneration: Generation;
 }
 
-export default function PokemonCards({ pokemons, onSelect, loading, selectedPokemon }: Props) {
+export default function PokemonCards({ 
+  pokemons, 
+  onSelect, 
+  loading, 
+  selectedPokemon,
+  currentGeneration
+}: Props) {
 
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<{ [key:number]: HTMLDivElement | null }>({});

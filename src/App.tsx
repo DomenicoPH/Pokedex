@@ -8,29 +8,42 @@ import Home from './pages/Home';
 import Types from './pages/Types';
 import Landing from './pages/Landing';
 
-import type { PokemonDetailType } from "./types/PokemonTypes";
+import type { PokemonDetailType, Generation } from "./types/PokemonTypes";
+import { GENERATIONS } from './utils/generations';
 
 function App() {
   const [pokemons, setPokemons] = useState<PokemonDetailType[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedPokemon, setSelectedPokemon] = useState<PokemonDetailType | null>(null);
   const [typesData, setTypesData] = useState<any[]>([]);
+  const [currentGeneration, setCurrentGeneration] = useState<Generation>(GENERATIONS[0]);
+  const [hasMore, setHasMore] = useState(true);
 
   // Fetch de Pokemons
+  const fetchPokemonsByGeneration = async (generation: Generation, append: boolean = false) => {
+    setLoading(true);
+    try{
+      const res = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${generation.limit}&offset=${generation.offset}`)
+      const results = res.data.results;
+      const detailed = await Promise.all(
+        results.map((p: { url: string }) => axios.get(p.url).then(r => r.data))
+      );
+
+      if(append){
+        setPokemons(prev => [...prev, ...detailed]);
+      } else {
+        setPokemons(detailed)
+      }
+      setHasMore(res.data.next !== null);
+    } catch (err) {
+      console.error('Error fetching Pokemon: ', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    axios.get("https://pokeapi.co/api/v2/pokemon?limit=151")
-      .then(async res => {
-        const results = res.data.results;
-        const detailed = await Promise.all(
-          results.map((p: { url: string }) => axios.get(p.url).then(r => r.data))
-        );
-        setPokemons(detailed);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error('Error fetching Pokemon: ', err);
-        setLoading(false);
-      });
+    fetchPokemonsByGeneration(GENERATIONS[0])
   }, []);
 
   // Fetch de Tipos
@@ -55,6 +68,23 @@ function App() {
     }
   };
 
+  const loadNextGeneration = () => {
+    const currentIndex = GENERATIONS.findIndex(gen => gen.id === currentGeneration.id);
+    if(currentIndex < GENERATIONS.length - 1){
+      const nextGen = GENERATIONS[currentIndex + 1];
+      setCurrentGeneration(nextGen);
+      fetchPokemonsByGeneration(nextGen, true);
+    }
+  };
+
+  const selectGeneration = (genId: number) => {
+    const selectedGen = GENERATIONS.find(gen => gen.id === genId);
+    if(selectedGen){
+      setCurrentGeneration(selectedGen);
+      fetchPokemonsByGeneration(selectedGen, false);
+    }
+  }
+
   return (
     <HashRouter>
       <AppContent
@@ -65,6 +95,10 @@ function App() {
         typesData={typesData}
         onSearch={handleSearchById}
         onSelectType={setPokemons}
+        currentGeneration={currentGeneration}
+        onLoadNext={loadNextGeneration}
+        onSelectGeneration={selectGeneration}
+        hasMore={hasMore}
       />
     </HashRouter>
   );
@@ -77,7 +111,11 @@ function AppContent({
   loading,
   typesData,
   onSearch,
-  onSelectType
+  onSelectType,
+  currentGeneration,
+  onLoadNext,
+  onSelectGeneration,
+  hasMore,
 }: {
   pokemons: PokemonDetailType[];
   setSelectedPokemon: (p: PokemonDetailType | null) => void;
@@ -86,6 +124,10 @@ function AppContent({
   typesData: any[];
   onSearch: (id: number) => void;
   onSelectType: (list: PokemonDetailType[]) => void;
+  currentGeneration: Generation;
+  onLoadNext: () => void;
+  onSelectGeneration: (genId: number) => void;
+  hasMore: boolean;
 }) {
   const location = useLocation();
   const isLanding = location.pathname === '/';
@@ -105,6 +147,10 @@ function AppContent({
               loading={loading}
               typesData={typesData}
               onSearch={onSearch}
+              currentGeneration={currentGeneration}
+              onLoadNext={onLoadNext}
+              onSelectGeneration={onSelectGeneration}
+              hasMore={hasMore}
             />
           }
         />

@@ -147,7 +147,7 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
                   className="w-28 h-28 border border-red-500/40 p-3 rounded-lg bg-gray-800 hover:scale-105 transition-transform duration-200 cursor-pointer"
                   src={src}
                   alt={pokemon.name}
-                  onClick={() => setSelectedImage(src)} // 👈 al hacer click abrimos modal
+                  onClick={() => setSelectedImage(src)}
                 />
               )
           )}

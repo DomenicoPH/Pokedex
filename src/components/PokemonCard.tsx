@@ -17,8 +17,8 @@ export default function PokemonCard({ id, name, image, type, isSelected = false 
     >
         <h2 className="text-lg font-bold">{id}</h2>
         <img src={image} alt={name} className="w-20 h-20 mb-2" />
-        <h2 className="text-xs">{name}</h2>
-        <p className="text-xs capitalize">{type}</p>
+        <h2 className="text-xs truncate max-w-full">{name}</h2>
+        {/* <p className="text-xs capitalize">{type}</p> */}
     </div>
   )
 }
