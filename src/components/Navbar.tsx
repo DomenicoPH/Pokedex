@@ -10,8 +10,8 @@ export default function Navbar(){
                     <h2 className="font-poke text-xs pt-1"><Link to="/">Pokédex</Link></h2>
                 </div>
                 <div className="flex items-center gap-4 text-xs">
-                    <a href="/types">Types</a>
-                    <a href="/about">About</a>
+                    <Link to='/types'>Types</Link>
+                    <Link to='/about'>About</Link>
                 </div>
             </div>
         </nav>

@@ -4,9 +4,10 @@ import axios from 'axios';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Landing from './pages/Landing';
 import Home from './pages/Home';
 import Types from './pages/Types';
-import Landing from './pages/Landing';
+import About from './pages/About';
 
 import type { PokemonDetailType, Generation } from "./types/PokemonTypes";
 import { GENERATIONS } from './utils/generations';
@@ -157,6 +158,10 @@ function AppContent({
         <Route
           path='/types'
           element={<Types onSelectType={onSelectType} />}
+        />
+        <Route 
+          path='/about'
+          element={<About />}
         />
       </Routes>
       {!isLanding && <Footer />}
