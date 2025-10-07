@@ -16,7 +16,7 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
         id="pokemon-detail"
         className="flex items-center justify-center flex-1 text-center px-10 bg-gray-800 text-white p-4 rounded-lg shadow-lg"
       >
-        <p className="text-gray-300">Selecciona un Pokémon</p>
+        <p className="text-gray-300">Select a Pokémon</p>
       </section>
     );
   }
@@ -59,17 +59,17 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
         {/* Datos básicos */}
         <div className="flex flex-col gap-3 text-sm">
           <p>
-            <strong className="text-gray-300">Peso:</strong>{" "}
+            <strong className="text-gray-300">Weight:</strong>{" "}
             <span className="text-yellow-400">{pokemon.weight}</span>
           </p>
           <p>
-            <strong className="text-gray-300">Altura:</strong>{" "}
+            <strong className="text-gray-300">Height:</strong>{" "}
             <span className="text-yellow-400">{pokemon.height}</span>
           </p>
 
           {/* Tipos */}
           <div>
-            <h3 className="font-semibold text-gray-300 mb-1">Tipos</h3>
+            <h3 className="font-semibold text-gray-300 mb-1">Types</h3>
             <div className="flex flex-wrap gap-2">
               {detailedTypes.map(
                 (type, idx) =>
@@ -98,7 +98,7 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
 
           {/* Habilidades */}
           <div>
-            <h3 className="font-semibold text-gray-300 mb-1">Habilidades</h3>
+            <h3 className="font-semibold text-gray-300 mb-1">Abilities</h3>
             <ul className="list-disc list-inside text-yellow-400">
               {pokemon.abilities.map((ab, idx) => (
                 <li key={idx} className="capitalize">
@@ -112,7 +112,7 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
 
       {/* Stats */}
       <div className="mt-8">
-        <h3 className="font-semibold text-gray-300 mb-3">Estadísticas</h3>
+        <h3 className="font-semibold text-gray-300 mb-3">Stats</h3>
         <div className="flex flex-col gap-3">
           {pokemon.stats.map((stat, idx) => (
             <div key={idx}>
@@ -133,7 +133,7 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
 
       {/* Sprites */}
       <div className="mt-8">
-        <h3 className="font-semibold text-gray-300 mb-3">Variantes</h3>
+        <h3 className="font-semibold text-gray-300 mb-3">Images</h3>
         <div className="flex flex-wrap justify-center gap-4">
           {[
             pokemon.sprites.other?.dream_world?.front_default,

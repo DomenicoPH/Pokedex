@@ -5,7 +5,7 @@ export default function Cargando(){
             <div className='w-20 h-20'>
                 <img src={pokeSpin} alt="pokebola"/>
             </div>
-            <p className='text-yellow-200 text-xl'>Cargando...</p>
+            <p className='text-yellow-200 text-xl'>Loading...</p>
         </div>
     )
 };

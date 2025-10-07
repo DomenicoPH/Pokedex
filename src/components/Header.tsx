@@ -41,7 +41,7 @@ export default function Header({
     }
 
      return (
-        <header className="flex items-center mb-4 gap-[2px]">
+        <header className="flex items-center mb-4 gap-4">
             
             <h1 className="text-md mr-4 font-bold text-yellow-400 text-center uppercase">{title}</h1>
             <div className="flex gap-2">
@@ -67,14 +67,14 @@ export default function Header({
             {/* Selector de generaciones */}
                 <div className="flex items-center gap-2 ml-auto">
                     <label htmlFor="generation-select" className="text-yellow-400 text-[8px] font-medium whitespace-nowrap">
-                        GENERACIÓN:
+                        GENERATION:
                     </label>
                     <div className="relative">
                         <select 
                             id="generation-select"
                             value={currentGeneration.id}
                             onChange={(e) => onSelectGeneration(Number(e.target.value))}
-                            className="text-[7px] px-2 py-1 pr-6 rounded border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-400 appearance-none cursor-pointer"
+                            className="text-[7px] px-2 py-1 pr-6 h-8 rounded border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-400 appearance-none cursor-pointer"
                         >
                             {GENERATIONS.map(gen => (
                                 <option key={gen.id} value={gen.id}>
@@ -90,9 +90,9 @@ export default function Header({
                 {hasMore && (
                     <button 
                         onClick={onLoadNext}
-                        className="text-[7px] px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors whitespace-nowrap"
+                        className="text-[7px] px-3 py-1 h-8 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors whitespace-nowrap"
                     >
-                        + Generación
+                        + Generation
                     </button>
                 )}
 

@@ -55,14 +55,14 @@ export default function PokemonTypesBar({ onHover, onSelectType }: PokemonTypesB
             <div className="flex items-center justify-center w-24 h-6 text-[10px] rounded-md px-5 text-yellow-400">
               {hoveredType
                 ? hoveredType.charAt(0).toUpperCase() + hoveredType.slice(1)
-                : "tipo"}
+                : "type"}
             </div>
 
             {/* Botón Reset */}
             <button
               onClick={handleReset}
               className="flex items-center justify-center w-6 h-6 bg-gray-800 hover:bg-gray-600 transition-colors cursor-pointer rounded-full p-[6px]"
-              title="Reset filtros"
+              title="Reset type filter"
             >
               <FiRefreshCcw className="text-yellow-400" size={16} />
             </button>
