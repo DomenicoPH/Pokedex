@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { PokemonDetailType } from "../types/PokemonTypes";
-import { typeColorBg, typeColorText, typeImages } from "../utils/typeColors";
+import { typeColorBg, typeImages } from "../utils/typeColors";
 
 type Props = {
   pokemon: PokemonDetailType | null;
