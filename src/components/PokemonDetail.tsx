@@ -28,27 +28,55 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
   return (
     <section
       id="pokemon-detail"
-      className="flex-1 bg-gray-900 text-white p-6 rounded-lg shadow-lg max-h-[80vh] overflow-y-auto custom-scroll"
+      className="relative flex-1 bg-gray-900 text-white p-6 rounded-lg shadow-lg max-h-[80vh] overflow-y-auto custom-scroll"
     >
       {/* Header */}
-      <header className="flex items-center gap-4 border-b border-red-500 pb-4 mb-6">
-        <img
-          className="w-20 h-20 rounded-full p-2"
-          src={pokemon.sprites.front_default}
-          alt={pokemon.name}
-        />
-        <div>
-          <h2 className="text-xl font-extrabold capitalize tracking-wide leading-10">
-            {pokemon.name}
-          </h2>
-          <p className="text-sm text-gray-400">#{pokemon.id}</p>
+      <header className="flex items-center justify-between gap-4 border-b border-gray-500 pb-4 mb-6">
+        <div className="flex items-center">
+          {/* img */}
+          <img
+            className="w-20 h-20 rounded-full p-2"
+            src={pokemon.sprites.front_default}
+            alt={pokemon.name}
+          />
+          {/* nombre + número */}
+          <div>
+            <h2 className="text-xl font-extrabold capitalize tracking-wide leading-10">
+              {pokemon.name}
+            </h2>
+            <p className="text-sm text-gray-400">#{pokemon.id}</p>
+          </div>
+        </div>
+        {/* Tipos */}
+        <div className="pr-10">
+          <div className="flex flex-wrap gap-2">
+            {detailedTypes.map(
+              (type, idx) =>
+                type && (
+                  <div
+                    key={idx}
+                    className={`relative group flex items-center justify-center w-8 h-8 mt-2 rounded-full ${typeColorBg[type.name]} bg-opacity-30`}
+                  >
+                    <img
+                      src={typeImages[type.name]}
+                      alt={type.name}
+                      className="w-4 h-4"
+                    />
+                    {/* Tooltip */}
+                    <div className="absolute bottom-full mb-1 px-2 py-1 rounded-md bg-gray-800 text-xs text-white whitespace-nowrap opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none">
+                      {type.name}
+                    </div>
+                  </div>
+                )
+            )}
+          </div>
         </div>
       </header>
 
       {/* Main Content */}
       <div className="grid md:grid-cols-2 gap-6">
         {/* Imagen central */}
-        <div className="flex justify-center items-center">
+        <div className="flex flex-col justify-center items-center">
           <img
             className="max-w-[200px] drop-shadow-lg hover:scale-105 transition-transform duration-200"
             src={pokemon.sprites.other?.showdown?.front_default}
@@ -65,33 +93,7 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
           <p>
             <strong className="text-gray-300">Height:</strong>{" "}
             <span className="text-yellow-400">{pokemon.height}</span>
-          </p>
-
-          {/* Tipos */}
-          <div>
-            <h3 className="font-semibold text-gray-300 mb-1">Types</h3>
-            <div className="flex flex-wrap gap-2">
-              {detailedTypes.map(
-                (type, idx) =>
-                  type && (
-                    <div
-                      key={idx}
-                      className={`relative group flex items-center justify-center w-8 h-8 mt-2 rounded-full ${typeColorBg[type.name]} bg-opacity-30`}
-                    >
-                      <img
-                        src={typeImages[type.name]}
-                        alt={type.name}
-                        className="w-4 h-4"
-                      />
-                      {/* Tooltip */}
-                      <div className="absolute bottom-full mb-1 px-2 py-1 rounded-md bg-gray-800 text-xs text-white whitespace-nowrap opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none">
-                        {type.name}
-                      </div>
-                    </div>
-                  )
-              )}
-            </div>
-          </div>
+          </p>        
 
           {/* Habilidades */}
           <div>
@@ -129,8 +131,7 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
       </div>
 
       {/* Sprites */}
-      <div className="mt-8 text-xs">
-        <h3 className="font-semibold text-gray-300 mb-3">Images</h3>
+      <div className="mt-10">
         <div className="flex flex-wrap justify-center gap-4">
           {[
             pokemon.sprites.other?.dream_world?.front_default,
@@ -154,11 +155,11 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
       {/* Modal */}
       {selectedImage && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50"
+          className="absolute inset-0 bg-black bg-opacity-80 flex justify-center items-center z-40 h-[84vh]"
           onClick={() => setSelectedImage(null)}
         >
           <div
-            className="relative bg-gray-900 p-4 rounded-lg shadow-xl"
+            className="relative p-4 rounded-lg shadow-xl max-w-[80%] max-h-[80%] flex justify-center items-center"
             onClick={(e) => e.stopPropagation()} // evitar cerrar si clickea dentro
           >
             <button
@@ -170,7 +171,7 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
             <img
               src={selectedImage}
               alt="Pokemon grande"
-              className="max-w-[80vw] max-h-[80vh] rounded-lg"
+              className="max-w-full max-h-[60vh] rounded-lg object-contain"
             />
           </div>
         </div>
