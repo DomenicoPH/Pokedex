@@ -134,15 +134,28 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
       <div className="mt-10">
         <div className="flex flex-wrap justify-center gap-4">
           {[
+            // Sprites básicos
+            pokemon.sprites.front_default,
+            pokemon.sprites.back_default,
+
+            // Dream World
             pokemon.sprites.other?.dream_world?.front_default,
+
+            // Home (HD)
             pokemon.sprites.other?.home?.front_default,
+
+            // Official artwork (HD)
             pokemon.sprites.other?.["official-artwork"]?.front_default,
+
+            // Showdown (modernos)
+            pokemon.sprites.other?.showdown?.front_default,
+            pokemon.sprites.other?.showdown?.back_default,
           ].map(
             (src, idx) =>
               src && (
                 <img
                   key={idx}
-                  className="w-28 h-28 border border-red-500/40 p-3 rounded-lg bg-gray-800 hover:scale-105 transition-transform duration-200 cursor-pointer"
+                  className="w-16 h-16 border border-red-500/40 p-3 rounded-lg bg-gray-800 hover:scale-105 transition-transform duration-200 cursor-pointer"
                   src={src}
                   alt={pokemon.name}
                   onClick={() => setSelectedImage(src)}
@@ -155,7 +168,7 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
       {/* Modal */}
       {selectedImage && (
         <div
-          className="absolute inset-0 bg-black bg-opacity-80 flex justify-center items-center z-40 h-[84vh]"
+          className="absolute inset-0 bg-black bg-opacity-80 flex justify-center items-center z-40 h-[80vh]"
           onClick={() => setSelectedImage(null)}
         >
           <div

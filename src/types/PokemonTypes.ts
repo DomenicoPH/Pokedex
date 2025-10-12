@@ -41,7 +41,7 @@ export type PokemonDetailType = {
     height: string;
     sprites: {
         front_default: string;
-        front_shiny: string;
+        back_default: string;
         other: {
             dream_world: {
                 front_default: string;
@@ -54,6 +54,7 @@ export type PokemonDetailType = {
             }
             showdown: {
                 front_default: string;
+                back_default: string;
             }
         }
     }
