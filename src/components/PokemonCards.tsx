@@ -65,7 +65,7 @@ export default function PokemonCards({
               <PokemonCard
                 id={pokemon.id}
                 name={pokemon.name}
-                image={pokemon.sprites.front_default}
+                image={pokemon.sprites.other?.["official-artwork"]?.front_default || pokemon.sprites.front_default}
                 type={pokemon.types[0]?.type.name ?? "unknown"}
                 isSelected={selectedPokemon?.id === pokemon.id}
               />

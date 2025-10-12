@@ -112,7 +112,6 @@ function AppContent({
   loading,
   typesData,
   onSearch,
-  onSelectType,
   currentGeneration,
   onLoadNext,
   onSelectGeneration,
@@ -157,7 +156,7 @@ function AppContent({
         />
         <Route
           path='/types'
-          element={<Types onSelectType={onSelectType} />}
+          element={<Types />}
         />
         <Route 
           path='/about'
