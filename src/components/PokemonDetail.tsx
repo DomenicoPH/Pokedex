@@ -5,10 +5,11 @@ import { typeColorBg, typeImages } from "../utils/typeColors";
 type Props = {
   pokemon: PokemonDetailType | null;
   typesData: any[];
+  selectedImage: string | null;
+  setSelectedImage: (src: string | null) => void;
 };
 
-export default function PokemonDetail({ pokemon, typesData }: Props) {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+export default function PokemonDetail({ pokemon, typesData, selectedImage, setSelectedImage }: Props) {
 
   if (!pokemon) {
     return (
@@ -165,30 +166,6 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
         </div>
       </div>
 
-      {/* Modal */}
-      {selectedImage && (
-        <div
-          className="absolute inset-0 bg-black bg-opacity-80 flex justify-center items-center z-40 h-[80vh]"
-          onClick={() => setSelectedImage(null)}
-        >
-          <div
-            className="relative p-4 rounded-lg shadow-xl max-w-[80%] max-h-[80%] flex justify-center items-center"
-            onClick={(e) => e.stopPropagation()} // evitar cerrar si clickea dentro
-          >
-            <button
-              className="absolute top-2 right-2 text-white hover:text-red-400"
-              onClick={() => setSelectedImage(null)}
-            >
-              ✕
-            </button>
-            <img
-              src={selectedImage}
-              alt="Pokemon grande"
-              className="max-w-full max-h-[60vh] rounded-lg object-contain"
-            />
-          </div>
-        </div>
-      )}
     </section>
   );
 }
