@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { typeImages } from "../utils/typeColors";
 import PokemonCard from "../components/PokemonCard";
+import pokeball from "../assets/img/pokeicon.png";
 
 type PokemonType = {
   name: string;
@@ -46,7 +47,7 @@ export default function Types() {
   return (
     <section className="min-h-[96.6dvh] flex gap-4 p-4 pt-20 bg-red-500 text-white">
       {/* Columna izquierda: tipos */}
-      <div className="flex flex-col gap-1">
+      <div className="fixed flex flex-col gap-1">
         {types.map((t) => (
           <button
             key={t.name}
@@ -60,10 +61,11 @@ export default function Types() {
             <span>{t.name}</span>
           </button>
         ))}
+        <img className="w-[150px] flex justify-center m-auto opacity-10 pointer-events-none" src={pokeball} alt="pokeball" />
       </div>
 
       {/* Columna derecha: detalle del tipo */}
-      <div className="flex-1 p-6 rounded-xl bg-gray-900 overflow-auto">
+      <div className="flex-1 p-6 ml-44 rounded-xl bg-gray-900 overflow-auto">
         {loading && <p className="text-yellow-300">Cargando información...</p>}
 
         {!loading && selectedTypeData && (
@@ -166,7 +168,7 @@ export default function Types() {
         )}
 
         {!loading && !selectedTypeData && (
-          <p className="text-gray-300">Selecciona un tipo para ver los detalles</p>
+          <p className="text-gray-300">Select a type to view details</p>
         )}
       </div>
     </section>
