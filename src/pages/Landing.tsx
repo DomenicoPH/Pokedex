@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import logo from '../assets/img/pokeicon.png';
-import vite from '../../public/vite.svg';
+import vite from './assets/vite.svg';
 
 export default function Landing(){
     return(

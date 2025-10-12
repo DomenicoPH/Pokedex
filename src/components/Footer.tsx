@@ -1,5 +1,5 @@
 import { FaGithub } from "react-icons/fa";
-import vite from '../../public/vite.svg';
+import vite from '../assets/vite.svg';
 
 export default function Footer(){
     return(
