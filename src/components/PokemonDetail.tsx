@@ -79,7 +79,7 @@ export default function PokemonDetail({ pokemon, typesData, setSelectedImage }: 
         <div className="flex flex-col justify-center items-center">
           <img
             className="max-w-[200px] drop-shadow-lg hover:scale-105 transition-transform duration-200"
-            src={pokemon.sprites.other?.showdown?.front_default}
+            src={pokemon.sprites.other?.showdown?.front_default || pokemon.sprites.other?.["official-artwork"]?.front_default}
             alt={pokemon.name}
           />
         </div>
