@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type { PokemonDetailType } from "../types/PokemonTypes";
 import { typeColorBg, typeImages } from "../utils/typeColors";
 
@@ -9,7 +8,7 @@ type Props = {
   setSelectedImage: (src: string | null) => void;
 };
 
-export default function PokemonDetail({ pokemon, typesData, selectedImage, setSelectedImage }: Props) {
+export default function PokemonDetail({ pokemon, typesData, setSelectedImage }: Props) {
 
   if (!pokemon) {
     return (

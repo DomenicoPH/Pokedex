@@ -73,15 +73,15 @@ export default function Home({
       {/* Modal */}
       {selectedImage && (
         <div
-          className="absolute inset-0 bg-black bg-opacity-60 flex justify-center items-center z-40"
+          className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-80 flex justify-center items-center z-40"
           onClick={() => setSelectedImage(null)}
         >
           <div
-            className="relative p-20 rounded-lg bg-black shadow-xl flex justify-center items-center"
+            className="relative py-20 px-60 rounded-3xl bg-gray-800 shadow-xl flex justify-center items-center"
             onClick={(e) => e.stopPropagation()} // evitar cerrar si clickea dentro
           >
             <button
-              className="absolute top-2 right-2 text-white hover:text-red-400"
+              className="absolute top-4 right-4 text-sm text-white hover:text-red-400"
               onClick={() => setSelectedImage(null)}
             >
               ✕
