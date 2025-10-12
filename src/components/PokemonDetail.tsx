@@ -33,12 +33,12 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
       {/* Header */}
       <header className="flex items-center gap-4 border-b border-red-500 pb-4 mb-6">
         <img
-          className="w-20 h-20 rounded-full border-2 border-red-500 bg-gray-700 p-2"
+          className="w-20 h-20 rounded-full p-2"
           src={pokemon.sprites.front_default}
           alt={pokemon.name}
         />
         <div>
-          <h2 className="text-3xl font-extrabold capitalize tracking-wide">
+          <h2 className="text-xl font-extrabold capitalize tracking-wide leading-10">
             {pokemon.name}
           </h2>
           <p className="text-sm text-gray-400">#{pokemon.id}</p>
@@ -57,7 +57,7 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
         </div>
 
         {/* Datos básicos */}
-        <div className="flex flex-col gap-3 text-sm">
+        <div className="flex flex-col gap-3 text-xs">
           <p>
             <strong className="text-gray-300">Weight:</strong>{" "}
             <span className="text-yellow-400">{pokemon.weight}</span>
@@ -76,20 +76,17 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
                   type && (
                     <div
                       key={idx}
-                      className={`flex items-center gap-2 text-sm px-3 py-1 rounded-full ${typeColorBg[type.name]} bg-opacity-30`}
+                      className={`relative group flex items-center justify-center w-8 h-8 mt-2 rounded-full ${typeColorBg[type.name]} bg-opacity-30`}
                     >
                       <img
                         src={typeImages[type.name]}
                         alt={type.name}
                         className="w-4 h-4"
                       />
-                      <span
-                        className={`font-semibold ${
-                          typeColorText[type.name] || "text-gray-200"
-                        }`}
-                      >
+                      {/* Tooltip */}
+                      <div className="absolute bottom-full mb-1 px-2 py-1 rounded-md bg-gray-800 text-xs text-white whitespace-nowrap opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none">
                         {type.name}
-                      </span>
+                      </div>
                     </div>
                   )
               )}
@@ -111,7 +108,7 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
       </div>
 
       {/* Stats */}
-      <div className="mt-8">
+      <div className="mt-8 text-xs">
         <h3 className="font-semibold text-gray-300 mb-3">Stats</h3>
         <div className="flex flex-col gap-3">
           {pokemon.stats.map((stat, idx) => (
@@ -132,7 +129,7 @@ export default function PokemonDetail({ pokemon, typesData }: Props) {
       </div>
 
       {/* Sprites */}
-      <div className="mt-8">
+      <div className="mt-8 text-xs">
         <h3 className="font-semibold text-gray-300 mb-3">Images</h3>
         <div className="flex flex-wrap justify-center gap-4">
           {[
