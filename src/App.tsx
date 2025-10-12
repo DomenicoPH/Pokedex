@@ -161,7 +161,7 @@ function AppContent({
         />
         <Route 
           path='/about'
-          element={<About />}
+          element={<About pokemons={pokemons} />}
         />
       </Routes>
       {!isLanding && <Footer />}
