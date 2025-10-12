@@ -71,13 +71,13 @@ export default function Home({
       </div>
 
       {/* Modal */}
-      {selectedImage && (
+      {selectedImage && selectedPokemon && (
         <div
           className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-80 flex justify-center items-center z-40"
           onClick={() => setSelectedImage(null)}
         >
           <div
-            className="relative py-20 px-60 rounded-3xl bg-gray-800 shadow-xl flex justify-center items-center"
+            className="relative py-20 px-40 rounded-3xl bg-gray-800 shadow-xl flex flex-col justify-center items-center gap-10"
             onClick={(e) => e.stopPropagation()} // evitar cerrar si clickea dentro
           >
             <button
@@ -91,7 +91,17 @@ export default function Home({
               alt="Pokemon grande"
               className="max-w-full max-h-[60vh] rounded-lg object-contain"
             />
+
+            {/* nombre + número */}
+            <div className="flex items-center gap-4">
+              <p className="text-md text-gray-400">#{selectedPokemon.id}</p>
+              <h2 className="text-md text-gray-400 font-extrabold capitalize tracking-wide leading-10">
+                {selectedPokemon.name}
+              </h2>
+            </div>
+
           </div>
+
         </div>
       )}
 
