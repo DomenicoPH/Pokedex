@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
 import logo from '../assets/img/pokeicon.png';
 import vite from '../assets/vite.svg';
+import { useEffect } from 'react';
 import { gsap } from 'gsap';
 
 export default function Landing(){
 
-    gsap.fromTo('#pokemon-enter', {opacity: 0, scale: 2},{opacity: 1, scale: 1, duration: 1});
-    gsap.fromTo('#pokemon-footer', {opacity: 0, y: 20},{opacity: 1, y:0, duration: 1.5});
+    useEffect(() => {
+        gsap.fromTo('#pokemon-enter', {opacity: 0, scale: 2},{opacity: 1, scale: 1, duration: 1});
+        gsap.fromTo('#pokemon-footer', {opacity: 0, y: 20},{opacity: 1, y:0, duration: 1.5});
+    },[]);
 
     return(
         <div className="flex flex-col justify-center items-center min-h-[100vh] bg-red-500">
