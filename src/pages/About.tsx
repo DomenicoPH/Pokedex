@@ -1,8 +1,27 @@
 import logo from '../assets/img/logo.png';
 import { SiVite, SiReact, SiTailwindcss, SiAxios, SiReactrouter } from 'react-icons/si';
-import { useMemo } from 'react';
+import { useMemo, useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
 
 export default function About({pokemons}: any) {
+
+  const containerRef = useRef<HTMLElement | null>(null);
+  const [spriteLoaded, setSpriteLoaded] = useState(false);
+
+  useEffect(() => {
+    if(!containerRef.current || !spriteLoaded) return;
+    const items = gsap.utils.toArray(containerRef.current.children);
+    gsap.fromTo(items, {
+      opacity: 0,
+      y: 30,
+    },{
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: 'power2.out',
+      stagger: 0.4,
+    })
+  },[spriteLoaded])
   
   const randomPokemon = useMemo(() => {
     if(!pokemons || pokemons.length === 0) return null;
@@ -13,8 +32,8 @@ export default function About({pokemons}: any) {
   const randomSprite = randomPokemon?.sprites?.other?.showdown?.front_default;
 
   return (
-    <section className="min-h-[96.6dvh] bg-red-500 text-white flex flex-col items-center justify-center px-6 py-12 text-center">
-        <img className='w-80 pb-10' src={logo} alt="Pokedex image" />
+    <section ref={containerRef} className="min-h-[96.6dvh] bg-red-500 text-white flex flex-col items-center justify-center px-6 py-12 text-center">
+      <img className='w-80 pb-10' src={logo} alt="Pokedex image" />
       <h1 className="text-xl font-bold mb-6 tracking-wide drop-shadow-lg">
         About This Pokédex
       </h1>
@@ -23,6 +42,7 @@ export default function About({pokemons}: any) {
         src={randomSprite}
         alt={randomPokemon?.name}
         className="drop-shadow-lg mb-8"
+        onLoad={() => setSpriteLoaded(true)}
       />
 
       <p className="max-w-2xl text-xs leading-loose mb-8">

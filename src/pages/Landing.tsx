@@ -7,13 +7,12 @@ import { gsap } from 'gsap';
 export default function Landing(){
 
     useEffect(() => {
-        gsap.fromTo('#pokemon-enter', {opacity: 0, scale: 2},{opacity: 1, scale: 1, duration: 1});
-        gsap.fromTo('#pokemon-footer', {opacity: 0, y: 20},{opacity: 1, y:0, duration: 1.5});
+        gsap.fromTo('#pokemon-enter', {opacity: 0, scale: 2},{opacity: 1, scale: 1, duration: 2, ease:'power1.inOut'});
+        gsap.fromTo('#pokemon-footer', {opacity: 0},{opacity: 1, duration: 3});
     },[]);
 
     return(
         <div className="flex flex-col justify-center items-center min-h-[100vh] bg-red-500">
-            {/* <h2 className='text-lg opacity-50'>- Pokedex -</h2> */}
             <Link id='pokemon-enter'  to="/home" className='group flex flex-col items-center'>
                 <img
                     src={logo} 
